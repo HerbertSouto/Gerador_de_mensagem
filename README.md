@@ -3,6 +3,13 @@
 O código Python lê dados de um arquivo CSV que contém informações sobre descontos relacionados a entregas afetadas durante o transporte. Ele agrupa essas informações por motorista e gera mensagens personalizadas para cada um. Cada mensagem informa ao motorista sobre a necessidade de aplicar descontos em futuros fretes devido aos eventos ocorridos. As mensagens incluem detalhes específicos de cada entrega afetada, como número de rastreamento (SPX TRACKING NUMBER), data de coleta, e o valor do prejuízo. Além disso, calcula o total do prejuízo para cada motorista e inclui instruções sobre como será aplicado o desconto e quais as ações a serem tomadas caso haja dificuldades no pagamento dos descontos.
 
 Aqui está o fluxo de processamento dos dados no código Python:
+
+## Fluxo de Processamento dos Dados
+
+O código Python lê dados de um arquivo CSV que contém informações sobre descontos relacionados a entregas afetadas durante o transporte. Ele agrupa essas informações por motorista e gera mensagens personalizadas para cada um. Cada mensagem informa ao motorista sobre a necessidade de aplicar descontos em futuros fretes devido aos eventos ocorridos. As mensagens incluem detalhes específicos de cada entrega afetada, como número de rastreamento (SPX TRACKING NUMBER), data de coleta, e o valor do prejuízo. Além disso, calcula o total do prejuízo para cada motorista e inclui instruções sobre como será aplicado o desconto e quais as ações a serem tomadas caso haja dificuldades no pagamento dos descontos.
+
+Aqui está o fluxo de processamento dos dados no código Python:
+
 ```mermaid
 graph TD;
     style A fill:#f9f,stroke:#333,stroke-width:4px;
