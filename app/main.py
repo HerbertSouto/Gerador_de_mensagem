@@ -2,7 +2,7 @@ import csv
 from collections import defaultdict
 
 # Caminho para o arquivo CSV
-desconto_dados = r"C:\Users\herbe\Desktop\MsgAut\src\desconto.csv"
+desconto_dados = r"C:\Users\herbe\Desktop\Gerador_de_mensagem\src\desconto.csv"
 
 # Dicionário para armazenar os dados agrupados por motorista
 dados_por_motorista = defaultdict(list)
