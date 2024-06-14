@@ -45,11 +45,3 @@ graph TD;
     G -->|Adição de Detalhes| H;
     H -->|Finalização e Impressão| I;
 
-
-Clone o Repositório:
-
-git clone https://github.com/HerbertSouto/gerador_de_mensagem.git
-cd gerador_de_mensagem
-
-
-
