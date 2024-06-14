@@ -43,3 +43,41 @@ graph TD;
     F -->|Cálculo de Prejuízo| G;
     G -->|Adição de Detalhes| H;
     H -->|Finalização e Impressão| I;
+
+
+Configuração e Execução
+Para garantir que o projeto execute corretamente na sua máquina ou na máquina do avaliador, siga estas etapas:
+
+Clone o Repositório:
+
+bash
+git clone https://github.com/HerbertSouto/gerador_de_mensagem.git
+cd gerador_de_mensagem
+Instale o Poetry:
+Certifique-se de ter Poetry instalado. Para instalar, siga as instruções em Poetry Installation Guide.
+
+Instale as Dependências:
+Use Poetry para instalar as dependências do projeto:
+
+bash
+poetry install
+Ative o Ambiente Virtual:
+Ative o ambiente virtual do Poetry para garantir que todas as dependências estejam disponíveis:
+
+bash
+poetry shell
+Execute o Projeto:
+
+bash
+python app/main.py
+
+
+Contribuição
+Contribuições são bem-vindas! Sinta-se à vontade para abrir um Pull Request para melhorias ou correções no projeto.
+
+
+
+
+
+
+
