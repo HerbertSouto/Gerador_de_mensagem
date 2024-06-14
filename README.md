@@ -50,7 +50,7 @@ graph TD;
 
 ## Configuração e Execução
 Configuração e Execução
-Para garantir que o projeto execute corretamente na sua máquina ou na máquina do avaliador, siga estas etapas:
+Para garantir que o projeto execute corretamente na sua máquina, siga estas etapas:
 
 ### Clone o Repositório:
 bash
