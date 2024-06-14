@@ -53,7 +53,7 @@ Configuração e Execução
 Para garantir que o projeto execute corretamente na sua máquina, siga estas etapas:
 
 ### Clone o Repositório:
-bash
+#### bash
 git clone https://github.com/HerbertSouto/gerador_de_mensagem.git
 cd gerador_de_mensagem
 
@@ -61,17 +61,15 @@ cd gerador_de_mensagem
 Certifique-se de ter Poetry instalado. Para instalar, siga as instruções em Poetry Installation Guide.
 
 ### Use Poetry para instalar as dependências do projeto:
-bash
+#### bash
 poetry install
 
 ### Ative o ambiente virtual do Poetry:
-para garantir que todas as dependências estejam disponíveis.
-
-bash
+#### bash
 poetry shell
 
 ### Execute o Projeto:
-bash
+#### bash
 python app/main.py
 
 ### Contribuição
