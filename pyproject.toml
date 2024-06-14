@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "msgaut"
+name = "gerador_de_mensagem"
 version = "0.1.0"
 description = ""
 authors = ["Herbert Souto <herbert-93@hotmail.com>"]
