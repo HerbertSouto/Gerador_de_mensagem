@@ -2,19 +2,19 @@ import csv
 from collections import defaultdict
 
 # Caminho para o arquivo CSV
-desconto_dados = r"C:\Users\herbe\Desktop\Gerador_de_mensagem\src\desconto.csv"
+desconto_dados = "src/desconto.csv"
 
 # Dicionário para armazenar os dados agrupados por motorista
 dados_por_motorista = defaultdict(list)
 
 # Lendo os dados do arquivo CSV e agrupando por motorista
-with open(desconto_dados, mode="r") as dados:
+with open(desconto_dados, mode="r", encoding="latin1") as dados:
     leitor = csv.DictReader(dados)
     for linha in leitor:
-        motorista = linha["MOTORISTA"]
-        dados_por_motorista[motorista].append(
+        id = linha["ID"]
+        dados_por_motorista[id].append(
             {
-                "ID": linha["ID"],
+                "MOTORISTA": linha["MOTORISTA"],
                 "PLACA": linha["PLACA"],
                 "SPX TRACKING NUMBER": linha["SPX TRACKING NUMBER"],
                 "DATA DA COLETA": linha["DATA DA COLETA"],
@@ -24,9 +24,12 @@ with open(desconto_dados, mode="r") as dados:
         )
 
 # Iterando sobre os dados agrupados e gerando mensagem para cada motorista
-for motorista, pacotes in dados_por_motorista.items():
+for motorista_id, pacotes in dados_por_motorista.items():
+    # Pegando o nome do motorista a partir do primeiro pacote
+    motorista_nome = pacotes[0]["MOTORISTA"] if pacotes else "Motorista Desconhecido"
+
     # Formatando a mensagem para cada motorista
-    mensagem = f"Prezado(a) {motorista},\n"
+    mensagem = f"Prezado(a) {motorista_nome},\n"
     mensagem += "Gostaríamos de informar que, devido a eventos ocorridos durante a prestação de serviços de transporte realizada por você, será necessário realizar um desconto nos seus fretes futuros. Esse desconto visa cobrir o prejuízo decorrente dos referidos eventos. Abaixo estão os detalhes das entregas afetadas:\n\n"
 
     # Adicionando detalhes de cada pacote do motorista
@@ -44,5 +47,5 @@ for motorista, pacotes in dados_por_motorista.items():
     mensagem += "Atenciosamente,\n"
     mensagem += "Equipe de Suporte ao Cliente\n\n"
 
-    # Imprimindo a mensagem para o motorista atual
+    # Imprimindo as mensagens
     print(mensagem)
