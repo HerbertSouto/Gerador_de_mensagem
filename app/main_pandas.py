@@ -1,45 +1,38 @@
-import csv
-from collections import defaultdict
+import pandas as pd
+import chardet
 
 # Caminho para o arquivo CSV
 desconto_dados = "src/desconto.csv"
 
-# Dicionário para armazenar os dados agrupados por motorista
-dados_por_motorista = defaultdict(list)
+# Detectando a codificação do arquivo CSV
+with open(desconto_dados, 'rb') as f:
+    result = chardet.detect(f.read(10000))
+    encoding = result['encoding']
+    print(f"Codificação detectada: {encoding}")
 
-# Lendo os dados do arquivo CSV e agrupando por motorista
-with open(desconto_dados, mode="r", encoding="ISO-8859-1") as dados:
-    leitor = csv.DictReader(dados)
-    for linha in leitor:
-        id = linha["ID"]
-        dados_por_motorista[id].append(
-            {
-                "MOTORISTA": linha["MOTORISTA"],
-                "PLACA": linha["PLACA"],
-                "SPX TRACKING NUMBER": linha["SPX TRACKING NUMBER"],
-                "DATA DA COLETA": linha["DATA DA COLETA"],
-                "VALOR": float(linha["VALOR"]),
-                "TELEFONE": linha["TELEFONE"],
-            }
-        )
+# Lendo os dados do arquivo CSV usando a codificação detectada
+df = pd.read_csv(desconto_dados, encoding=encoding)
+
+# Agrupando os dados por motorista
+dados_por_motorista = df.groupby("ID")
 
 # Iterando sobre os dados agrupados e gerando mensagem para cada motorista
-for motorista_id, pacotes in dados_por_motorista.items():
+for motorista_id, pacotes in dados_por_motorista:
     # Pegando o nome do motorista a partir do primeiro pacote
-    motorista_nome = pacotes[0]["MOTORISTA"] if pacotes else "Motorista Desconhecido"
+    motorista_nome = pacotes.iloc[0]["MOTORISTA"]
 
     # Formatando a mensagem para cada motorista
     mensagem = f"Prezado(a) {motorista_nome},\n"
     mensagem += "Gostaríamos de informar que, devido a eventos ocorridos durante a prestação de serviços de transporte realizada por você, será necessário realizar um desconto nos seus fretes futuros. Esse desconto visa cobrir o prejuízo decorrente dos referidos eventos. Abaixo estão os detalhes das entregas afetadas:\n\n"
 
     # Adicionando detalhes de cada pacote do motorista
-    for pacote in pacotes:
+    for _, pacote in pacotes.iterrows():
         mensagem += f"SPX TRACKING NUMBER: {pacote['SPX TRACKING NUMBER']}\n"
         mensagem += f"Data da Coleta: {pacote['DATA DA COLETA']}\n"
         mensagem += f"Valor do Prejuízo: R$ {pacote['VALOR']:.2f}\n\n"
 
     # Calculando o total do prejuízo para o motorista
-    total_prejuizo = sum(pacote["VALOR"] for pacote in pacotes)
+    total_prejuizo = pacotes["VALOR"].sum()
     mensagem += f"Total do Prejuízo: R$ {total_prejuizo:.2f}\n\n"
     mensagem += "Valor do Desconto por Frete (%): 25\n"
     mensagem += "Início do Desconto: No próximo dia útil\n\n"
